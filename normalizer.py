@@ -5,9 +5,6 @@
 
 def get_domain(url):
     url = canonicalize_single_url(url)
-    # url_split = url.split("/")
-    # domain = url_split[0]
-
     url_split = url.split("/")
     domain = url_split[2]
     return domain
