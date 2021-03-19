@@ -5,8 +5,11 @@
 
 def get_domain(url):
     url = canonicalize_single_url(url)
+    # url_split = url.split("/")
+    # domain = url_split[0]
+
     url_split = url.split("/")
-    domain = url_split[0]
+    domain = url_split[2]
     return domain
 
 
@@ -34,9 +37,21 @@ def canonicalize_single_url(url, domain=""):
     # Make lowercase
     url = url.lower()
 
+    # Used to normalize everything to http or https
+    if "http://www." in url:
+        schema = "http://"
+
+    elif "https://www." in url:
+        schema = "https://"
+
+    else:
+        schema = "https://"
+
     # Remove initial http or www
     url = url.replace("http://www.", "")
     url = url.replace("https://www.", "")
+    url = url.replace("http://", "")
+    url = url.replace("https://", "")
     url = url.replace("www.", "")
 
     # Remove any ports
@@ -55,7 +70,7 @@ def canonicalize_single_url(url, domain=""):
     # Remove final slashes before suffix
     url = url.replace("/.", ".")
 
-    return url
+    return schema + url
 
 
 
@@ -81,6 +96,6 @@ def run_tests():
     print(get_domain("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
 
 
-run_tests()
+# run_tests()
 
 
