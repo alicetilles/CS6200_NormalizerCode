@@ -13,7 +13,7 @@ def get_domain(url):
 def canonicalize_single_url(url, domain=""):
 
     # If the URL is relative, make it absolute
-    if ".." in url:
+    if url.startswith(".."):
         url = url.strip("..")
 
         ## Normalize domain name
@@ -71,14 +71,14 @@ def run_tests():
     print(canonicalize_single_url("../c.html", "example.com"))
     print(canonicalize_single_url("http://www.example.com/a.html#anything"))
     print(canonicalize_single_url("http://www.example.com//a.html"))
-
+    print(canonicalize_single_url("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
     print(get_domain("http://www.example.com/a.html"))
     print(get_domain("https://www.abc.com"))
     print(get_domain("abc.com"))
     print(get_domain("www.abc.com"))
     print(get_domain("www.abc.com/"))
     print(get_domain("www.abc.com/hi"))
-
+    print(get_domain("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
 
 
 run_tests()
