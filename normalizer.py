@@ -16,12 +16,18 @@ def canonicalize_single_url(url, domain=""):
     if ".." in url:
         url = url.strip("..")
 
+        ## Normalize domain name
+        domain = get_domain(domain)
+
         # Add final slash just in case (gets removed later if it's a double)
         domain = domain + "/"
         url = domain + url
 
     # Another way for the URL to be negative (starting with /, not ..):
     if url.startswith("/"):
+
+        ## Normalize domain name
+        domain = get_domain(domain)
         url = domain + url
 
 
@@ -56,6 +62,7 @@ def canonicalize_single_url(url, domain=""):
 def run_tests():
     print(canonicalize_single_url("https://www.abc.com"))
     print(canonicalize_single_url("http://www.abc.com"))
+    print(canonicalize_single_url("http://www.abc.html"))
     print(canonicalize_single_url("/wiki/SomeText", "wikipedia.com"))
     print(canonicalize_single_url("../wiki/SomeText", "Wikipedia.com"))
     print(canonicalize_single_url("www.wikipedia.org/wiki/SomeText"))
@@ -71,9 +78,9 @@ def run_tests():
     print(get_domain("www.abc.com"))
     print(get_domain("www.abc.com/"))
     print(get_domain("www.abc.com/hi"))
-    
 
 
-# run_tests()
+
+run_tests()
 
 
