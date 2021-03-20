@@ -1,4 +1,5 @@
 
+
 ## Many URLs can refer to the same web resource. In order to ensure that you crawl 40,000 distinct web sites, you
 # should apply the following canonicalization rules to all URLs you encounter.
 
@@ -23,8 +24,15 @@ def canonicalize_single_url(url, domain=""):
         domain = domain + "/"
         url = domain + url
 
-    # Another way for the URL to be negative (starting with /, not ..):
+    # Another way for the URL to be relative (starting with /, not ..):
     if url.startswith("/"):
+
+        ## Normalize domain name
+        domain = get_domain(domain)
+        url = domain + url
+
+    # Another way for the URL to be relative (starting with #):
+    if url.startswith("#"):
 
         ## Normalize domain name
         domain = get_domain(domain)
@@ -67,7 +75,8 @@ def canonicalize_single_url(url, domain=""):
     # Remove final slashes before suffix
     url = url.replace("/.", ".")
 
-    return schema + url
+    url = schema + url
+    return url
 
 
 
@@ -77,6 +86,7 @@ def run_tests():
     print(canonicalize_single_url("http://www.abc.html"))
     print(canonicalize_single_url("/wiki/SomeText", "wikipedia.com"))
     print(canonicalize_single_url("../wiki/SomeText", "Wikipedia.com"))
+    print(canonicalize_single_url("#jumplink", "Wikipedia.com"))
     print(canonicalize_single_url("www.wikipedia.org/wiki/SomeText"))
     print(canonicalize_single_url("HTTP://www.Example.com/SomeFile.html"))
     print(canonicalize_single_url("http://www.example.com:80"))
