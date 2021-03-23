@@ -65,7 +65,7 @@ def canonicalize_single_url(url, domain=""):
         url = domain + url
 
     # Get HTTP or HTTPS and :// and lowercase it
-    pattern = r"([htpHTP]+[sS]*[\:\/\/]+)"
+    pattern = r"([hH]{1}[tT]{1,2}[pP]{1}[sS]{1}[sS]*[\:\/\/]+)"
     http = re.search(pattern, url)
     url = re.sub(pattern, "", url)
 
@@ -111,19 +111,21 @@ def canonicalize_single_url(url, domain=""):
 
 
 def run_tests():
-    print(canonicalize_single_url("https://www.abc.com"))
-    print(canonicalize_single_url("http://www.abc.com"))
-    print(canonicalize_single_url("http://www.abc.html"))
-    print(canonicalize_single_url("/wiki/SomeText", "wikipedia.com"))
-    print(canonicalize_single_url("../wiki/SomeText", "Wikipedia.com"))
-    print(canonicalize_single_url("../wiki/SomeText", "www.Wikipedia.com"))
-    print(canonicalize_single_url("www.wikipedia.org/wiki/SomeText"))
-    print(canonicalize_single_url("HTTP://www.Example.com/SomeFile.html"))
-    print(canonicalize_single_url("http://www.example.com:80"))
-    print(canonicalize_single_url("../c.html", "example.com"))
-    print(canonicalize_single_url("http://www.example.com/a.html#anything"))
-    print(canonicalize_single_url("http://www.example.com//a.html"))
-    print(canonicalize_single_url("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
+    # print(canonicalize_single_url("https://www.abc.com"))
+    # print(canonicalize_single_url("http://www.abc.com"))
+    # print(canonicalize_single_url("http://www.abc.html"))
+    # print(canonicalize_single_url("/wiki/SomeText", "wikipedia.com"))
+    # print(canonicalize_single_url("../wiki/SomeText", "Wikipedia.com"))
+    # print(canonicalize_single_url("../wiki/SomeText", "www.Wikipedia.com"))
+    # print(canonicalize_single_url("www.wikipedia.org/wiki/SomeText"))
+    # print(canonicalize_single_url("HTTP://www.Example.com/SomeFile.html"))
+    # print(canonicalize_single_url("http://www.example.com:80"))
+    # print(canonicalize_single_url("../c.html", "example.com"))
+    # print(canonicalize_single_url("http://www.example.com/a.html#anything"))
+    # print(canonicalize_single_url("http://www.example.com//a.html"))
+    # print(canonicalize_single_url("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
+    print(canonicalize_single_url("https://course.ccs.neu.edu/cs6200f20/assignments/3.html"))
+
     # print(get_domain("http://www.example.com/a.html"))
     # print(get_domain("https://www.abc.com"))
     # print(get_domain("abc.com"))
