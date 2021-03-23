@@ -37,6 +37,8 @@ def canonicalize_domain(domain):
 
 
 def canonicalize_single_url(url, domain=""):
+    print("\n")
+
     # If the URL is relative, make it absolute
     if url.startswith(".."):
         url = url.strip("..")
@@ -102,8 +104,8 @@ def canonicalize_single_url(url, domain=""):
 
     url = before_slash.lower() + "/" + after_slash
     url = url.strip("/")
-    url = http + "www." + url
- 
+    url = http + url
+
     return url
 
 
