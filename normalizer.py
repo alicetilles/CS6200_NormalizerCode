@@ -35,9 +35,7 @@ def canonicalize_domain(domain):
     return domain
 
 
-
 def canonicalize_single_url(url, domain=""):
-    print("\n")
 
     # If the URL is relative, make it absolute
     if url.startswith(".."):
@@ -65,9 +63,10 @@ def canonicalize_single_url(url, domain=""):
         url = domain + url
 
     # Get HTTP or HTTPS and :// and lowercase it
-    pattern = r"([hH]{1}[tT]{1,2}[pP]{1}[sS]{1}[sS]*[\:\/\/]+)"
+    pattern = r"([hH]{1}[tT]{1,2}[pP]{1}[sS]*[\:\/\/]+)"
     http = re.search(pattern, url)
     url = re.sub(pattern, "", url)
+
 
     if http:
         http = http.group(1).lower()
@@ -110,7 +109,7 @@ def canonicalize_single_url(url, domain=""):
 
 
 
-def run_tests():
+# def run_tests():
     # print(canonicalize_single_url("https://www.abc.com"))
     # print(canonicalize_single_url("http://www.abc.com"))
     # print(canonicalize_single_url("http://www.abc.html"))
@@ -124,8 +123,7 @@ def run_tests():
     # print(canonicalize_single_url("http://www.example.com/a.html#anything"))
     # print(canonicalize_single_url("http://www.example.com//a.html"))
     # print(canonicalize_single_url("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
-    print(canonicalize_single_url("https://course.ccs.neu.edu/cs6200f20/assignments/3.html"))
-
+    # print(canonicalize_single_url("https://course.ccs.neu.edu/cs6200f20/assignments/3.html"))
     # print(get_domain("http://www.example.com/a.html"))
     # print(get_domain("https://www.abc.com"))
     # print(get_domain("abc.com"))
@@ -133,7 +131,8 @@ def run_tests():
     # print(get_domain("www.abc.com/"))
     # print(get_domain("www.abc.com/hi"))
     # print(get_domain("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
-
+    # print("http://en.citizendium.org/wiki/Data_structure")
+    # print(canonicalize_single_url("http://en.citizendium.org/wiki/Data_structure"))
 
 # run_tests()
 
