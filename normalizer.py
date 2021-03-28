@@ -49,7 +49,7 @@ def canonicalize_single_url(url, domain=""):
         url = domain + url
 
     # Another way for the URL to be relative (starting with /, not ..):
-    if url.startswith("/"):
+    if url.startswith("/") and not url.startswith("//"):
 
         ## Normalize domain name
         domain = canonicalize_domain(domain)
@@ -66,7 +66,6 @@ def canonicalize_single_url(url, domain=""):
     pattern = r"([hH]{1}[tT]{1,2}[pP]{1}[sS]*[\:\/\/]+)"
     http = re.search(pattern, url)
     url = re.sub(pattern, "", url)
-
 
     if http:
         http = http.group(1).lower()
@@ -86,6 +85,9 @@ def canonicalize_single_url(url, domain=""):
 
     # Remove & suffixes
     url = url.split("&")[0]
+
+    # # Remove ? suffixes
+    url = url.split("?")[0]
 
     # Remove duplicate slashes
     url = url.replace("//", "/")
@@ -109,7 +111,7 @@ def canonicalize_single_url(url, domain=""):
 
 
 
-# def run_tests():
+def run_tests():
     # print(canonicalize_single_url("https://www.abc.com"))
     # print(canonicalize_single_url("http://www.abc.com"))
     # print(canonicalize_single_url("http://www.abc.html"))
@@ -133,7 +135,9 @@ def canonicalize_single_url(url, domain=""):
     # print(get_domain("https://www.google.com/search?q=hash+table&oq=hash+table&aqs=chrome..69i57j0i67j0l3j0i10j0i67j0l3.3698j0j9&sourceid=chrome&ie=UTF-8"))
     # print("http://en.citizendium.org/wiki/Data_structure")
     # print(canonicalize_single_url("http://en.citizendium.org/wiki/Data_structure"))
+    print("//foundation.wikimedia.org/wiki/Terms_of_Use")
+    print(canonicalize_single_url("//foundation.wikimedia.org/wiki/Terms_of_Use"))
+
 
 # run_tests()
-
 
