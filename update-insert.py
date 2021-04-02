@@ -41,7 +41,7 @@ def index_document(doc):
     elif len(res["hits"]["hits"]) == 1:
         doc_found = res["hits"]["hits"][0]
         cur_inlinks = doc_found['_source']['inlinks']
-        cur_outlinks = doc_found['_source']['inlinks']
+        cur_outlinks = doc_found['_source']['outlinks']
         # print("\tIt has the inlinks:", cur_inlinks)
         # print("\tIt has the outlinks:", cur_outlinks)
 
